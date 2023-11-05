@@ -50,16 +50,24 @@ const showGameResult = () => {
   }
 };
 
+const addMatchCardClass = () => {
+  view.openCards[0].classList.add("match-card");
+  view.openCards[1].classList.add("match-card");
+};
+
+const removeOpenCardClass = () => {
+  view.openCards[0].classList.remove("open-card");
+  view.openCards[1].classList.remove("open-card");
+};
+
 const checkMatch = () => {
   const firstClickedCard = view.openCards[0].firstChild.src;
   const secondClickedCard = view.openCards[1].firstChild.src;
 
   if (firstClickedCard === secondClickedCard) {
-    view.openCards[0].classList.add("match-card");
-    view.openCards[1].classList.add("match-card");
+    addMatchCardClass();
   } else {
-    view.openCards[0].classList.remove("open-card");
-    view.openCards[1].classList.remove("open-card");
+    removeOpenCardClass();
   }
 
   view.openCards = [];

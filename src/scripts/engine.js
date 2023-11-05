@@ -84,15 +84,29 @@ const handleClickCard = (heroCard) => {
   if (view.openCards.length === 2) setTimeout(checkMatch, 500);
 };
 
-view.heroCards.forEach((card) => {
+const createHeroCardElement = () => {
   let heroCard = document.createElement("div");
   let heroImage = document.createElement("img");
 
+  return { heroCard, heroImage };
+};
+
+const addHeroImageAttributes = (heroImage, card) => {
   heroImage.src = card;
   heroImage.className = "hero-image";
+};
 
+const addHeroCardAttributes = (heroCard, heroImage) => {
   heroCard.className = "card";
   heroCard.appendChild(heroImage);
+};
+
+view.heroCards.forEach((card) => {
+  let { heroCard, heroImage } = createHeroCardElement();
+
+  addHeroImageAttributes(heroImage, card);
+  addHeroCardAttributes(heroCard, heroImage);
+
   heroCard.onclick = () => handleClickCard(heroCard);
 
   view.game.appendChild(heroCard);

@@ -3,6 +3,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  user-select: none;
   background-color: #ff7d0a;
 }
 
@@ -46,6 +47,19 @@ h1 {
   width: 100px;
   border-radius: 10px;
   background-color: #ffffff;
+  transform: rotateY(180deg);
+  transition: 0.25s;
+}
+
+.card::after {
+  backface-visibility: hidden;
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background: linear-gradient(225deg, #7b7b7b 0% 0%, #c1c1c1 50%, #7b7b7b 100%);
+  transform: rotateY(0deg);
+  transition: 0.25s;
 }
 
 .hero-image {

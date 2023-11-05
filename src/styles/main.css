@@ -3,7 +3,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #ff449f;
+  background-color: #ff7d0a;
 }
 
 .container {
@@ -14,14 +14,10 @@ body {
   position: relative;
   padding: 40px 60px;
   gap: 30px;
+  border: 5px solid #ff9f4a;
   border-radius: 25px;
-  background: linear-gradient(
-    325deg,
-    #03001e 0%,
-    #7303c0 30%,
-    #ec38bc 70%,
-    #fdeff9 100%
-  );
+  background: linear-gradient(325deg, #ff7d0a 0% 0%, #ffffff 50%, #ff7d0a 100%);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
 }
 
 h1 {
@@ -29,25 +25,6 @@ h1 {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: #ffffff;
-}
-
-.reset {
-  width: 100%;
-  padding: 15px 20px;
-  font-size: 1.5em;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  cursor: pointer;
-  border: none;
-  border-radius: inherit;
-  color: #000000;
-  background-color: #ffffff;
-}
-
-.reset:focus {
-  color: #ffffff;
-  background-color: #7303c0;
 }
 
 .game {
@@ -76,4 +53,23 @@ h1 {
   height: 100%;
   object-fit: cover;
   border-radius: inherit;
+}
+
+.reset {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 1.5em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  border: none;
+  border-radius: inherit;
+  color: #ff7d0a;
+  background-color: #ffffff;
+}
+
+.reset:focus {
+  color: #ffffff;
+  background-color: #ff7d0a;
 }

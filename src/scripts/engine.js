@@ -42,6 +42,14 @@ const { view } = state;
 
 let shuffledCards = view.heroCards.sort(() => (Math.random() > 0.5 ? 2 : -1));
 
+const showGameResult = () => {
+  if (
+    document.querySelectorAll(".match-card").length === view.heroCards.length
+  ) {
+    console.log("Win");
+  }
+};
+
 const checkMatch = () => {
   const firstClickedCard = view.openCards[0].firstChild.src;
   const secondClickedCard = view.openCards[1].firstChild.src;
@@ -55,6 +63,8 @@ const checkMatch = () => {
   }
 
   view.openCards = [];
+
+  showGameResult();
 };
 
 const handleClickCard = (heroCard) => {

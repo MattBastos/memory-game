@@ -35,6 +35,7 @@ const state = {
     ],
     openCards: [],
     resetBtn: document.getElementById("reset-btn"),
+    gameResult: document.getElementById("game-result"),
   },
 };
 
@@ -52,7 +53,11 @@ const showGameResult = () => {
   if (
     document.querySelectorAll(".match-card").length === view.heroCards.length
   ) {
-    console.log("Win");
+    view.gameResult.classList.add("show");
+
+    setTimeout(() => {
+      view.gameResult.classList.remove("show");
+    }, 6000);
   }
 };
 

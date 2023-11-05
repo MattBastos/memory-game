@@ -42,6 +42,12 @@ const { view } = state;
 
 let shuffledCards = view.heroCards.sort(() => (Math.random() > 0.5 ? 2 : -1));
 
+let consecutiveClicks = 0;
+
+const isClickLimitReached = () => consecutiveClicks >= 2;
+
+const isCardInOpenCards = (heroCard) => view.openCards.includes(heroCard);
+
 const showGameResult = () => {
   if (
     document.querySelectorAll(".match-card").length === view.heroCards.length
@@ -76,16 +82,21 @@ const checkMatch = () => {
 };
 
 const handleClickCard = (heroCard) => {
+  if (isClickLimitReached()) return;
+
   if (view.openCards.length < 2) {
-    if (view.openCards.includes(heroCard)) {
-      return;
-    }
+    if (isCardInOpenCards(heroCard)) return;
 
     heroCard.classList.add("open-card");
     view.openCards.push(heroCard);
+    consecutiveClicks += 1;
   }
 
-  if (view.openCards.length === 2) setTimeout(checkMatch, 500);
+  if (view.openCards.length === 2)
+    setTimeout(() => {
+      checkMatch();
+      consecutiveClicks = 0;
+    }, 500);
 };
 
 const createHeroCardElement = () => {

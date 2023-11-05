@@ -23,3 +23,10 @@ body {
     #fdeff9 100%
   );
 }
+
+h1 {
+  font-size: 3em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+}

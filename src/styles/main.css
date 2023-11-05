@@ -30,3 +30,22 @@ h1 {
   letter-spacing: 0.1em;
   color: #ffffff;
 }
+
+.reset {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 1.5em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  border: none;
+  border-radius: inherit;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+.reset:focus {
+  color: #ffffff;
+  background-color: #7303c0;
+}

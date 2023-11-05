@@ -42,12 +42,25 @@ const { view } = state;
 
 let shuffledCards = view.heroCards.sort(() => (Math.random() > 0.5 ? 2 : -1));
 
-const checkMatch = () => {};
+const checkMatch = () => {
+  const firstClickedCard = view.openCards[0].firstChild.src;
+  const secondClickedCard = view.openCards[1].firstChild.src;
 
-const handleClickCard = (heroCard, heroCardImage) => {
+  if (firstClickedCard === secondClickedCard) {
+    view.openCards[0].classList.add("match-card");
+    view.openCards[1].classList.add("match-card");
+  } else {
+    view.openCards[0].classList.remove("open-card");
+    view.openCards[1].classList.remove("open-card");
+  }
+
+  view.openCards = [];
+};
+
+const handleClickCard = (heroCard) => {
   if (view.openCards.length < 2) {
     heroCard.classList.add("open-card");
-    view.openCards.push(heroCardImage);
+    view.openCards.push(heroCard);
   }
 
   if (view.openCards.length === 2) setTimeout(checkMatch, 500);
@@ -62,7 +75,7 @@ view.heroCards.forEach((card) => {
 
   heroCard.className = "card";
   heroCard.appendChild(heroImage);
-  heroCard.onclick = () => handleClickCard(heroCard, card);
+  heroCard.onclick = () => handleClickCard(heroCard);
 
   view.game.appendChild(heroCard);
 });

@@ -42,27 +42,91 @@ const { view } = state;
 
 let shuffledCards = view.heroCards.sort(() => (Math.random() > 0.5 ? 2 : -1));
 
-const checkMatch = () => {};
+let consecutiveClicks = 0;
 
-const handleClickCard = (heroCard, heroCardImage) => {
-  if (view.openCards.length < 2) {
-    heroCard.classList.add("open-card");
-    view.openCards.push(heroCardImage);
+const isClickLimitReached = () => consecutiveClicks >= 2;
+
+const isCardInOpenCards = (heroCard) => view.openCards.includes(heroCard);
+
+const showGameResult = () => {
+  if (
+    document.querySelectorAll(".match-card").length === view.heroCards.length
+  ) {
+    console.log("Win");
   }
-
-  if (view.openCards.length === 2) setTimeout(checkMatch, 500);
 };
 
-view.heroCards.forEach((card) => {
+const addMatchCardClass = () => {
+  view.openCards[0].classList.add("match-card");
+  view.openCards[1].classList.add("match-card");
+};
+
+const removeOpenCardClass = () => {
+  view.openCards[0].classList.remove("open-card");
+  view.openCards[1].classList.remove("open-card");
+};
+
+const checkMatch = () => {
+  const firstClickedCard = view.openCards[0].firstChild.src;
+  const secondClickedCard = view.openCards[1].firstChild.src;
+
+  if (firstClickedCard === secondClickedCard) {
+    addMatchCardClass();
+  } else {
+    removeOpenCardClass();
+  }
+
+  view.openCards = [];
+
+  showGameResult();
+};
+
+const addCardToOpenCards = (heroCard) => {
+  heroCard.classList.add("open-card");
+  view.openCards.push(heroCard);
+  consecutiveClicks += 1;
+};
+
+const handleClickCard = (heroCard) => {
+  if (isClickLimitReached()) return;
+
+  if (view.openCards.length < 2) {
+    if (isCardInOpenCards(heroCard)) return;
+
+    addCardToOpenCards(heroCard);
+  }
+
+  if (view.openCards.length === 2)
+    setTimeout(() => {
+      checkMatch();
+      consecutiveClicks = 0;
+    }, 500);
+};
+
+const createHeroCardElement = () => {
   let heroCard = document.createElement("div");
   let heroImage = document.createElement("img");
 
+  return { heroCard, heroImage };
+};
+
+const addHeroImageAttributes = (heroImage, card) => {
   heroImage.src = card;
   heroImage.className = "hero-image";
+};
 
+const addHeroCardAttributes = (heroCard, heroImage) => {
   heroCard.className = "card";
   heroCard.appendChild(heroImage);
-  heroCard.onclick = () => handleClickCard(heroCard, card);
+};
+
+view.heroCards.forEach((card) => {
+  let { heroCard, heroImage } = createHeroCardElement();
+
+  addHeroImageAttributes(heroImage, card);
+  addHeroCardAttributes(heroCard, heroImage);
+
+  heroCard.onclick = () => handleClickCard(heroCard);
 
   view.game.appendChild(heroCard);
 });

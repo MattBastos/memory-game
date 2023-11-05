@@ -81,15 +81,19 @@ const checkMatch = () => {
   showGameResult();
 };
 
+const addCardToOpenCards = (heroCard) => {
+  heroCard.classList.add("open-card");
+  view.openCards.push(heroCard);
+  consecutiveClicks += 1;
+};
+
 const handleClickCard = (heroCard) => {
   if (isClickLimitReached()) return;
 
   if (view.openCards.length < 2) {
     if (isCardInOpenCards(heroCard)) return;
 
-    heroCard.classList.add("open-card");
-    view.openCards.push(heroCard);
-    consecutiveClicks += 1;
+    addCardToOpenCards(heroCard);
   }
 
   if (view.openCards.length === 2)

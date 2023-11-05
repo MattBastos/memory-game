@@ -77,6 +77,10 @@ const checkMatch = () => {
 
 const handleClickCard = (heroCard) => {
   if (view.openCards.length < 2) {
+    if (view.openCards.includes(heroCard)) {
+      return;
+    }
+
     heroCard.classList.add("open-card");
     view.openCards.push(heroCard);
   }

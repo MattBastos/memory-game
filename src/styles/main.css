@@ -95,9 +95,43 @@ h1 {
   border-radius: inherit;
   color: #ff7d0a;
   background-color: #ffffff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
 }
 
 .reset:focus {
   color: #ffffff;
   background-color: #ff7d0a;
+}
+
+@keyframes slideGameResult {
+  0% {
+    top: -50%;
+  }
+  50% {
+    top: 50%;
+  }
+}
+
+#game-result {
+  display: none;
+  position: fixed;
+  top: 50%;
+  opacity: 0;
+  padding: 10px 20px;
+  font-size: 4em;
+  text-transform: uppercase;
+  border: 5px solid #ff9f4a;
+  border-radius: 10px;
+  color: #ffffff;
+  background-color: #ff7d0a;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  transform: translate(0, -50%);
+  transition: all 0.5s;
+  animation: slideGameResult 0.5s ease-in-out forwards;
+}
+
+#game-result.show {
+  display: block;
+  opacity: 1;
 }

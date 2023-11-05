@@ -49,7 +49,7 @@ view.heroCards.forEach((card) => {
   heroImage.src = card;
   heroImage.className = "hero-image";
 
-  heroCard.className = "item";
+  heroCard.className = "card";
   heroCard.appendChild(heroImage);
 
   view.game.appendChild(heroCard);

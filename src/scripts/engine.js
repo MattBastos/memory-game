@@ -1,12 +1,12 @@
 const heroImageSources = {
-  junkerQueen: "../assets/junker-queen.png",
-  zarya: "../assets/zarya.png",
-  hanzo: "../assets/hanzo.png",
-  genji: "../assets/genji.png",
-  tracer: "../assets/tracer.png",
-  cassidy: "../assets/cassidy.png",
-  kiriko: "../assets/kiriko.png",
-  ana: "../assets/ana.png",
+  junkerQueen: "src/assets/junker-queen.png",
+  zarya: "src/assets/zarya.png",
+  hanzo: "src/assets/hanzo.png",
+  genji: "src/assets/genji.png",
+  tracer: "src/assets/tracer.png",
+  cassidy: "src/assets/cassidy.png",
+  kiriko: "src/assets/kiriko.png",
+  ana: "src/assets/ana.png",
 };
 
 const { junkerQueen, zarya, hanzo, genji, tracer, cassidy, kiriko, ana } =
@@ -14,6 +14,7 @@ const { junkerQueen, zarya, hanzo, genji, tracer, cassidy, kiriko, ana } =
 
 const state = {
   view: {
+    game: document.querySelector(".game"),
     heroCards: [
       junkerQueen,
       junkerQueen,
@@ -40,6 +41,19 @@ const state = {
 const { view } = state;
 
 let shuffledCards = view.heroCards.sort(() => (Math.random() > 0.5 ? 2 : -1));
+
+view.heroCards.forEach((card) => {
+  let heroCard = document.createElement("div");
+  let heroImage = document.createElement("img");
+
+  heroImage.src = card;
+  heroImage.className = "hero-image";
+
+  heroCard.className = "item";
+  heroCard.appendChild(heroImage);
+
+  view.game.appendChild(heroCard);
+});
 
 const resetGame = () => location.reload();
 

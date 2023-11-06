@@ -63,7 +63,7 @@ h1 {
   position: absolute;
   inset: 0;
   border-radius: 10px;
-  background-image: url("/src/assets/overwatch-logo.png");
+  background-image: url("../assets/overwatch-logo.png");
   background-size: cover;
   background-repeat: no-repeat;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);

@@ -104,6 +104,8 @@ const isClickLimitReached = () => consecutiveClicks >= MAX_CONSECUTIVE_CLICKS;
 
 const isCardInOpenCards = (heroCard) => view.openCards.includes(heroCard);
 
+const isCardMatched = (heroCard) => heroCard.classList.contains("match-card");
+
 const getHeroNameFromImageSource = (imageSource) => {
   const startIndex = imageSource.indexOf("assets/") + "assets/".length;
   const endIndex = imageSource.lastIndexOf(".");
@@ -179,7 +181,7 @@ const addCardToOpenCards = (heroCard) => {
 };
 
 const handleClickCard = (heroCard) => {
-  if (isClickLimitReached()) return;
+  if (isClickLimitReached() || isCardMatched(heroCard)) return;
 
   if (view.openCards.length < 2) {
     if (isCardInOpenCards(heroCard)) return;

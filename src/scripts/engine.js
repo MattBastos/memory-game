@@ -52,29 +52,26 @@ const heroVoicelineSources = {
   ],
 };
 
-const { junkerQueen, zarya, hanzo, genji, tracer, cassidy, kiriko, ana } =
-  heroImageSources;
-
 const state = {
   view: {
     game: document.querySelector(".game"),
     heroCards: [
-      junkerQueen,
-      junkerQueen,
-      zarya,
-      zarya,
-      hanzo,
-      hanzo,
-      genji,
-      genji,
-      tracer,
-      tracer,
-      cassidy,
-      cassidy,
-      kiriko,
-      kiriko,
-      ana,
-      ana,
+      heroImageSources.junkerQueen,
+      heroImageSources.junkerQueen,
+      heroImageSources.zarya,
+      heroImageSources.zarya,
+      heroImageSources.hanzo,
+      heroImageSources.hanzo,
+      heroImageSources.genji,
+      heroImageSources.genji,
+      heroImageSources.tracer,
+      heroImageSources.tracer,
+      heroImageSources.cassidy,
+      heroImageSources.cassidy,
+      heroImageSources.kiriko,
+      heroImageSources.kiriko,
+      heroImageSources.ana,
+      heroImageSources.ana,
     ],
     openCards: [],
     resetBtn: document.getElementById("reset-btn"),
@@ -92,7 +89,7 @@ const isClickLimitReached = () => consecutiveClicks >= 2;
 
 const isCardInOpenCards = (heroCard) => view.openCards.includes(heroCard);
 
-const playSoundtrack = (soundtrack) => {
+const playGameOverSoundtrack = (soundtrack) => {
   let audio = new Audio(`./src/audios/${soundtrack}`);
 
   audio.volume = 0.2;
@@ -104,7 +101,7 @@ const showGameResult = () => {
     document.querySelectorAll(".match-card").length === view.heroCards.length
   ) {
     view.gameResult.classList.add("show");
-    playSoundtrack("vitory-theme.mp3");
+    playGameOverSoundtrack("vitory-theme.mp3");
   }
 };
 

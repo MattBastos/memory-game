@@ -1,73 +1,89 @@
-const heroImageSources = {
-  junkerQueen: "src/assets/junkerQueen.png",
-  zarya: "src/assets/zarya.png",
-  hanzo: "src/assets/hanzo.png",
-  genji: "src/assets/genji.png",
-  tracer: "src/assets/tracer.png",
-  cassidy: "src/assets/cassidy.png",
-  kiriko: "src/assets/kiriko.png",
-  ana: "src/assets/ana.png",
-};
-
-const heroVoicelineSources = {
-  ana: [
-    "src/audios/ana/hello-1.ogg",
-    "src/audios/ana/hello-2.ogg",
-    "src/audios/ana/hello-3.ogg",
-  ],
-  cassidy: [
-    "src/audios/cassidy/hello-1.ogg",
-    "src/audios/cassidy/hello-2.ogg",
-    "src/audios/cassidy/hello-3.ogg",
-  ],
-  genji: [
-    "src/audios/genji/hello-1.ogg",
-    "src/audios/genji/hello-2.ogg",
-    "src/audios/genji/hello-3.ogg",
-  ],
-  hanzo: [
-    "src/audios/hanzo/hello-1.ogg",
-    "src/audios/hanzo/hello-2.ogg",
-    "src/audios/hanzo/hello-3.ogg",
-  ],
-  junkerQueen: [
-    "src/audios/junkerQueen/hello-1.ogg",
-    "src/audios/junkerQueen/hello-2.ogg",
-    "src/audios/junkerQueen/hello-3.ogg",
-  ],
-  kiriko: ["src/audios/kiriko/hello-1.ogg", "src/audios/kiriko/hello-2.ogg"],
-  tracer: [
-    "src/audios/tracer/hello-1.ogg",
-    "src/audios/tracer/hello-2.ogg",
-    "src/audios/tracer/hello-3.ogg",
-  ],
-  zarya: [
-    "src/audios/zarya/hello-1.ogg",
-    "src/audios/zarya/hello-2.ogg",
-    "src/audios/zarya/hello-3.ogg",
-  ],
+const heroes = {
+  ana: {
+    voicelines: [
+      "src/audios/ana/hello-1.ogg",
+      "src/audios/ana/hello-2.ogg",
+      "src/audios/ana/hello-3.ogg",
+    ],
+    image: "src/assets/ana.png",
+  },
+  cassidy: {
+    voicelines: [
+      "src/audios/cassidy/hello-1.ogg",
+      "src/audios/cassidy/hello-2.ogg",
+      "src/audios/cassidy/hello-3.ogg",
+    ],
+    image: "src/assets/cassidy.png",
+  },
+  genji: {
+    voicelines: [
+      "src/audios/genji/hello-1.ogg",
+      "src/audios/genji/hello-2.ogg",
+      "src/audios/genji/hello-3.ogg",
+    ],
+    image: "src/assets/genji.png",
+  },
+  hanzo: {
+    voicelines: [
+      "src/audios/hanzo/hello-1.ogg",
+      "src/audios/hanzo/hello-2.ogg",
+      "src/audios/hanzo/hello-3.ogg",
+    ],
+    image: "src/assets/hanzo.png",
+  },
+  junkerQueen: {
+    voicelines: [
+      "src/audios/junkerQueen/hello-1.ogg",
+      "src/audios/junkerQueen/hello-2.ogg",
+      "src/audios/junkerQueen/hello-3.ogg",
+    ],
+    image: "src/assets/junkerQueen.png",
+  },
+  kiriko: {
+    voicelines: [
+      "src/audios/kiriko/hello-1.ogg",
+      "src/audios/kiriko/hello-2.ogg",
+    ],
+    image: "src/assets/kiriko.png",
+  },
+  tracer: {
+    voicelines: [
+      "src/audios/tracer/hello-1.ogg",
+      "src/audios/tracer/hello-2.ogg",
+      "src/audios/tracer/hello-3.ogg",
+    ],
+    image: "src/assets/tracer.png",
+  },
+  zarya: {
+    voicelines: [
+      "src/audios/zarya/hello-1.ogg",
+      "src/audios/zarya/hello-2.ogg",
+      "src/audios/zarya/hello-3.ogg",
+    ],
+    image: "src/assets/zarya.png",
+  },
 };
 
 const state = {
   view: {
     game: document.querySelector(".game"),
     heroCards: [
-      heroImageSources.junkerQueen,
-      heroImageSources.junkerQueen,
-      heroImageSources.zarya,
-      heroImageSources.zarya,
-      heroImageSources.hanzo,
-      heroImageSources.hanzo,
-      heroImageSources.genji,
-      heroImageSources.genji,
-      heroImageSources.tracer,
-      heroImageSources.tracer,
-      heroImageSources.cassidy,
-      heroImageSources.cassidy,
-      heroImageSources.kiriko,
-      heroImageSources.kiriko,
-      heroImageSources.ana,
-      heroImageSources.ana,
+      heroes.ana.image,
+      heroes.ana.image,
+      heroes.cassidy.image,
+      heroes.cassidy.image,
+      heroes.genji.image,
+      heroes.genji.image,
+      heroes.hanzo.image,
+      heroes.hanzo.image,
+      heroes.junkerQueen.image,
+      heroes.junkerQueen.image,
+      heroes.kiriko.image,
+      heroes.kiriko.image,
+      heroes.tracer.image,
+      heroes.tracer.image,
+      heroes.zarya.image,
+      heroes.zarya.image,
     ],
     openCards: [],
     resetBtn: document.getElementById("reset-btn"),
@@ -93,7 +109,7 @@ const getHeroNameFromImageSource = (imageSource) => {
 };
 
 const getRandomHeroVoiceline = (heroName) => {
-  const voicelines = heroVoicelineSources[heroName];
+  const voicelines = heroes[heroName].voicelines;
 
   if (voicelines) {
     const randomVoicelineIndex = Math.floor(Math.random() * voicelines.length);

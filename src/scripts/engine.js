@@ -61,10 +61,7 @@ const showGameResult = () => {
     document.querySelectorAll(".match-card").length === view.heroCards.length
   ) {
     view.gameResult.classList.add("show");
-
-    setTimeout(() => {
-      view.gameResult.classList.remove("show");
-    }, 6000);
+    playSoundtrack("vitory-theme.mp3");
   }
 };
 

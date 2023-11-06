@@ -28,6 +28,10 @@ Este é um jogo da memória desenvolvido como parte do meu portfólio. O jogo te
 
 Para jogar este jogo, basta ter um navegador da web compatível com HTML5, como Google Chrome, Mozilla Firefox, ou Microsoft Edge.
 
+## Demonstração
+
+Jogue um pouco clicando [aqui](https://mattbastos.github.io/overwatch-memory-game/).
+
 ## Como Executar
 
 1. Clone este repositório em sua máquina local.

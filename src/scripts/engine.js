@@ -1,5 +1,6 @@
 const MAX_CONSECUTIVE_CLICKS = 2;
 const MATCH_DELAY = 500;
+const CARD_CLICK_SOUNDTRACK = "card-click.wav";
 const VICTORY_SOUNDTRACK = "victory-theme.mp3";
 
 const heroes = {
@@ -97,7 +98,6 @@ const state = {
 
 const { view } = state;
 let consecutiveClicks = 0;
-
 let shuffledCards = view.heroCards.sort(() => (Math.random() > 0.5 ? 2 : -1));
 
 const isClickLimitReached = () => consecutiveClicks >= MAX_CONSECUTIVE_CLICKS;
@@ -116,7 +116,6 @@ const getRandomHeroVoiceline = (heroName) => {
 
   if (voicelines) {
     const randomVoicelineIndex = Math.floor(Math.random() * voicelines.length);
-
     return voicelines[randomVoicelineIndex];
   }
 };
@@ -129,7 +128,7 @@ const playHeroVoiceline = (heroName) => {
   audio.play();
 };
 
-const playGameOverSoundtrack = (soundtrack) => {
+const playSoundtrack = (soundtrack) => {
   let audio = new Audio(`./src/audios/${soundtrack}`);
 
   audio.volume = 0.1;
@@ -141,7 +140,7 @@ const showGameResult = () => {
     document.querySelectorAll(".match-card").length === view.heroCards.length
   ) {
     view.gameResult.classList.add("show");
-    playGameOverSoundtrack(VICTORY_SOUNDTRACK);
+    playSoundtrack(VICTORY_SOUNDTRACK);
   }
 };
 
@@ -185,6 +184,7 @@ const handleClickCard = (heroCard) => {
   if (view.openCards.length < 2) {
     if (isCardInOpenCards(heroCard)) return;
 
+    playSoundtrack(CARD_CLICK_SOUNDTRACK);
     addCardToOpenCards(heroCard);
   }
 

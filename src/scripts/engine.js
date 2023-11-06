@@ -9,6 +9,49 @@ const heroImageSources = {
   ana: "src/assets/ana.png",
 };
 
+const heroVoicelineSources = {
+  ana: [
+    "src/audios/ana/hello-1.ogg",
+    "src/audios/ana/hello-2.ogg",
+    "src/audios/ana/hello-3.ogg",
+  ],
+  cassidy: [
+    "src/audios/cassidy/hello-1.ogg",
+    "src/audios/cassidy/hello-2.ogg",
+    "src/audios/cassidy/hello-3.ogg",
+  ],
+  genji: [
+    "src/audios/genji/hello-1.ogg",
+    "src/audios/genji/hello-2.ogg",
+    "src/audios/genji/hello-3.ogg",
+  ],
+  hanzo: [
+    "src/audios/hanzo/hello-1.ogg",
+    "src/audios/hanzo/hello-2.ogg",
+    "src/audios/hanzo/hello-3.ogg",
+  ],
+  junkerQueen: [
+    "src/audios/junker-queen/hello-1.ogg",
+    "src/audios/junker-queen/hello-2.ogg",
+    "src/audios/junker-queen/hello-3.ogg",
+  ],
+  kiriko: [
+    "src/audios/kiriko/hello-1.ogg",
+    "src/audios/kiriko/hello-2.ogg",
+    "src/audios/kiriko/hello-3.ogg",
+  ],
+  tracer: [
+    "src/audios/tracer/hello-1.ogg",
+    "src/audios/tracer/hello-2.ogg",
+    "src/audios/tracer/hello-3.ogg",
+  ],
+  zarya: [
+    "src/audios/zarya/hello-1.ogg",
+    "src/audios/zarya/hello-2.ogg",
+    "src/audios/zarya/hello-3.ogg",
+  ],
+};
+
 const { junkerQueen, zarya, hanzo, genji, tracer, cassidy, kiriko, ana } =
   heroImageSources;
 

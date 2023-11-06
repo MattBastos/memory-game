@@ -1,3 +1,7 @@
+const MAX_CONSECUTIVE_CLICKS = 2;
+const MATCH_DELAY = 500;
+const VICTORY_SOUNDTRACK = "victory-theme.mp3";
+
 const heroes = {
   ana: {
     voicelines: [
@@ -92,12 +96,11 @@ const state = {
 };
 
 const { view } = state;
+let consecutiveClicks = 0;
 
 let shuffledCards = view.heroCards.sort(() => (Math.random() > 0.5 ? 2 : -1));
 
-let consecutiveClicks = 0;
-
-const isClickLimitReached = () => consecutiveClicks >= 2;
+const isClickLimitReached = () => consecutiveClicks >= MAX_CONSECUTIVE_CLICKS;
 
 const isCardInOpenCards = (heroCard) => view.openCards.includes(heroCard);
 
@@ -138,7 +141,7 @@ const showGameResult = () => {
     document.querySelectorAll(".match-card").length === view.heroCards.length
   ) {
     view.gameResult.classList.add("show");
-    playGameOverSoundtrack("vitory-theme.mp3");
+    playGameOverSoundtrack(VICTORY_SOUNDTRACK);
   }
 };
 
@@ -189,7 +192,7 @@ const handleClickCard = (heroCard) => {
     setTimeout(() => {
       checkMatch();
       consecutiveClicks = 0;
-    }, 500);
+    }, MATCH_DELAY);
 };
 
 const createHeroCardElement = () => {

@@ -49,6 +49,13 @@ const isClickLimitReached = () => consecutiveClicks >= 2;
 
 const isCardInOpenCards = (heroCard) => view.openCards.includes(heroCard);
 
+const playSoundtrack = (soundtrack) => {
+  let audio = new Audio(`./src/audios/${soundtrack}`);
+
+  audio.volume = 0.2;
+  audio.play();
+};
+
 const showGameResult = () => {
   if (
     document.querySelectorAll(".match-card").length === view.heroCards.length

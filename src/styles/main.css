@@ -128,7 +128,7 @@ h1 {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
   transform: translate(0, -50%);
   transition: all 0.5s;
-  animation: slideGameResult 0.5s ease-in-out forwards;
+  animation: slideGameResult 1s ease-in-out forwards;
 }
 
 #game-result.show {

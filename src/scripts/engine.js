@@ -1,37 +1,89 @@
-const heroImageSources = {
-  junkerQueen: "src/assets/junker-queen.png",
-  zarya: "src/assets/zarya.png",
-  hanzo: "src/assets/hanzo.png",
-  genji: "src/assets/genji.png",
-  tracer: "src/assets/tracer.png",
-  cassidy: "src/assets/cassidy.png",
-  kiriko: "src/assets/kiriko.png",
-  ana: "src/assets/ana.png",
+const heroes = {
+  ana: {
+    voicelines: [
+      "src/audios/ana/hello-1.ogg",
+      "src/audios/ana/hello-2.ogg",
+      "src/audios/ana/hello-3.ogg",
+    ],
+    image: "src/assets/ana.png",
+  },
+  cassidy: {
+    voicelines: [
+      "src/audios/cassidy/hello-1.ogg",
+      "src/audios/cassidy/hello-2.ogg",
+      "src/audios/cassidy/hello-3.ogg",
+    ],
+    image: "src/assets/cassidy.png",
+  },
+  genji: {
+    voicelines: [
+      "src/audios/genji/hello-1.ogg",
+      "src/audios/genji/hello-2.ogg",
+      "src/audios/genji/hello-3.ogg",
+    ],
+    image: "src/assets/genji.png",
+  },
+  hanzo: {
+    voicelines: [
+      "src/audios/hanzo/hello-1.ogg",
+      "src/audios/hanzo/hello-2.ogg",
+      "src/audios/hanzo/hello-3.ogg",
+    ],
+    image: "src/assets/hanzo.png",
+  },
+  junkerQueen: {
+    voicelines: [
+      "src/audios/junkerQueen/hello-1.ogg",
+      "src/audios/junkerQueen/hello-2.ogg",
+      "src/audios/junkerQueen/hello-3.ogg",
+    ],
+    image: "src/assets/junkerQueen.png",
+  },
+  kiriko: {
+    voicelines: [
+      "src/audios/kiriko/hello-1.ogg",
+      "src/audios/kiriko/hello-2.ogg",
+    ],
+    image: "src/assets/kiriko.png",
+  },
+  tracer: {
+    voicelines: [
+      "src/audios/tracer/hello-1.ogg",
+      "src/audios/tracer/hello-2.ogg",
+      "src/audios/tracer/hello-3.ogg",
+    ],
+    image: "src/assets/tracer.png",
+  },
+  zarya: {
+    voicelines: [
+      "src/audios/zarya/hello-1.ogg",
+      "src/audios/zarya/hello-2.ogg",
+      "src/audios/zarya/hello-3.ogg",
+    ],
+    image: "src/assets/zarya.png",
+  },
 };
-
-const { junkerQueen, zarya, hanzo, genji, tracer, cassidy, kiriko, ana } =
-  heroImageSources;
 
 const state = {
   view: {
     game: document.querySelector(".game"),
     heroCards: [
-      junkerQueen,
-      junkerQueen,
-      zarya,
-      zarya,
-      hanzo,
-      hanzo,
-      genji,
-      genji,
-      tracer,
-      tracer,
-      cassidy,
-      cassidy,
-      kiriko,
-      kiriko,
-      ana,
-      ana,
+      heroes.ana.image,
+      heroes.ana.image,
+      heroes.cassidy.image,
+      heroes.cassidy.image,
+      heroes.genji.image,
+      heroes.genji.image,
+      heroes.hanzo.image,
+      heroes.hanzo.image,
+      heroes.junkerQueen.image,
+      heroes.junkerQueen.image,
+      heroes.kiriko.image,
+      heroes.kiriko.image,
+      heroes.tracer.image,
+      heroes.tracer.image,
+      heroes.zarya.image,
+      heroes.zarya.image,
     ],
     openCards: [],
     resetBtn: document.getElementById("reset-btn"),
@@ -49,15 +101,44 @@ const isClickLimitReached = () => consecutiveClicks >= 2;
 
 const isCardInOpenCards = (heroCard) => view.openCards.includes(heroCard);
 
+const getHeroNameFromImageSource = (imageSource) => {
+  const startIndex = imageSource.indexOf("assets/") + "assets/".length;
+  const endIndex = imageSource.lastIndexOf(".");
+
+  return imageSource.slice(startIndex, endIndex);
+};
+
+const getRandomHeroVoiceline = (heroName) => {
+  const voicelines = heroes[heroName].voicelines;
+
+  if (voicelines) {
+    const randomVoicelineIndex = Math.floor(Math.random() * voicelines.length);
+
+    return voicelines[randomVoicelineIndex];
+  }
+};
+
+const playHeroVoiceline = (heroName) => {
+  const heroVoiceLine = getRandomHeroVoiceline(heroName);
+
+  const audio = new Audio(heroVoiceLine);
+  audio.volume = 0.3;
+  audio.play();
+};
+
+const playGameOverSoundtrack = (soundtrack) => {
+  let audio = new Audio(`./src/audios/${soundtrack}`);
+
+  audio.volume = 0.1;
+  audio.play();
+};
+
 const showGameResult = () => {
   if (
     document.querySelectorAll(".match-card").length === view.heroCards.length
   ) {
     view.gameResult.classList.add("show");
-
-    setTimeout(() => {
-      view.gameResult.classList.remove("show");
-    }, 6000);
+    playGameOverSoundtrack("vitory-theme.mp3");
   }
 };
 
@@ -77,6 +158,9 @@ const checkMatch = () => {
 
   if (firstClickedCard === secondClickedCard) {
     addMatchCardClass();
+
+    const heroName = getHeroNameFromImageSource(firstClickedCard);
+    playHeroVoiceline(heroName);
   } else {
     removeOpenCardClass();
   }

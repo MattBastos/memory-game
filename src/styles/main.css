@@ -63,7 +63,9 @@ h1 {
   position: absolute;
   inset: 0;
   border-radius: 10px;
-  background: linear-gradient(225deg, #ffaa55 0%, #ffddaa 50%, #ffaa55 100%);
+  background-image: url("/src/assets/overwatch-logo.png");
+  background-size: cover;
+  background-repeat: no-repeat;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   transform: rotateY(0deg);
   transition: 0.25s;

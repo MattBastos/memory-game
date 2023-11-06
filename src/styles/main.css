@@ -52,6 +52,7 @@ h1 {
   width: 100px;
   border-radius: 10px;
   background-color: #ffffff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   transform: rotateY(180deg);
   transition: 0.25s;
 }
@@ -62,7 +63,8 @@ h1 {
   position: absolute;
   inset: 0;
   border-radius: 10px;
-  background: linear-gradient(225deg, #7b7b7b 0% 0%, #c1c1c1 50%, #7b7b7b 100%);
+  background: linear-gradient(225deg, #ffaa55 0%, #ffddaa 50%, #ffaa55 100%);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   transform: rotateY(0deg);
   transition: 0.25s;
 }

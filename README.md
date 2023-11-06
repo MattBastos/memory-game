@@ -1,4 +1,4 @@
-#Jogo da Memória - Overwatch
+# Jogo da Memória - Overwatch
 
 Este é um jogo da memória desenvolvido como parte do meu portfólio. O jogo tem como objetivo testar a memória do jogador, desafiando-o a encontrar pares de cartas com imagens de heróis do jogo Overwatch.
 

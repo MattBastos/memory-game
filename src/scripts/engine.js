@@ -1,5 +1,5 @@
 const heroImageSources = {
-  junkerQueen: "src/assets/junker-queen.png",
+  junkerQueen: "src/assets/junkerQueen.png",
   zarya: "src/assets/zarya.png",
   hanzo: "src/assets/hanzo.png",
   genji: "src/assets/genji.png",
@@ -31,15 +31,11 @@ const heroVoicelineSources = {
     "src/audios/hanzo/hello-3.ogg",
   ],
   junkerQueen: [
-    "src/audios/junker-queen/hello-1.ogg",
-    "src/audios/junker-queen/hello-2.ogg",
-    "src/audios/junker-queen/hello-3.ogg",
+    "src/audios/junkerQueen/hello-1.ogg",
+    "src/audios/junkerQueen/hello-2.ogg",
+    "src/audios/junkerQueen/hello-3.ogg",
   ],
-  kiriko: [
-    "src/audios/kiriko/hello-1.ogg",
-    "src/audios/kiriko/hello-2.ogg",
-    "src/audios/kiriko/hello-3.ogg",
-  ],
+  kiriko: ["src/audios/kiriko/hello-1.ogg", "src/audios/kiriko/hello-2.ogg"],
   tracer: [
     "src/audios/tracer/hello-1.ogg",
     "src/audios/tracer/hello-2.ogg",
@@ -89,10 +85,35 @@ const isClickLimitReached = () => consecutiveClicks >= 2;
 
 const isCardInOpenCards = (heroCard) => view.openCards.includes(heroCard);
 
+const getHeroNameFromImageSource = (imageSource) => {
+  const startIndex = imageSource.indexOf("assets/") + "assets/".length;
+  const endIndex = imageSource.lastIndexOf(".");
+
+  return imageSource.slice(startIndex, endIndex);
+};
+
+const getRandomHeroVoiceline = (heroName) => {
+  const voicelines = heroVoicelineSources[heroName];
+
+  if (voicelines) {
+    const randomVoicelineIndex = Math.floor(Math.random() * voicelines.length);
+
+    return voicelines[randomVoicelineIndex];
+  }
+};
+
+const playHeroVoiceline = (heroName) => {
+  const heroVoiceLine = getRandomHeroVoiceline(heroName);
+
+  const audio = new Audio(heroVoiceLine);
+  audio.volume = 0.3;
+  audio.play();
+};
+
 const playGameOverSoundtrack = (soundtrack) => {
   let audio = new Audio(`./src/audios/${soundtrack}`);
 
-  audio.volume = 0.2;
+  audio.volume = 0.1;
   audio.play();
 };
 
@@ -121,6 +142,9 @@ const checkMatch = () => {
 
   if (firstClickedCard === secondClickedCard) {
     addMatchCardClass();
+
+    const heroName = getHeroNameFromImageSource(firstClickedCard);
+    playHeroVoiceline(heroName);
   } else {
     removeOpenCardClass();
   }
